@@ -1,0 +1,26 @@
+
+/.DS_Store
+.DS_Store/
+.DS_Store
+
+
+
+target/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+
+
+/target
+.classpath
+.project
+.settings/
+/target
+logs
+
+deploy.zip
+dependency-reduced-pom.xml
+

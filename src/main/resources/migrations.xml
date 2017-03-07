@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="1" author="ssun">
+        <createTable tableName="driver_events">
+            <column name="event_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="driver_id" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="capacity" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="event_type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="ssun">
+        <createTable tableName="shipment_events">
+            <column name="event_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="shipment_id" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="capacity" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="event_type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="ssun">
+        <createTable tableName="offer_events">
+            <column name="event_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="offer_id" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="driver_id" type="varchar(255)">
+            </column>
+            <column name="shipment_id" type="varchar(255)">
+            </column>
+            <column name="capacity" type="int">
+            </column>
+            <column name="event_type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="ssun">
+        <createTable tableName="driver_materialized">
+            <column name="driver_id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="capacity" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="offers_count" type="int">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <createIndex tableName="driver_materialized" indexName="idx_driver_id">
+            <column name="capacity"></column>
+        </createIndex>
+        <createIndex tableName="driver_materialized" indexName="idx_offers_count">
+            <column name="offers_count"></column>
+        </createIndex>
+    </changeSet>
+    <changeSet id="5" author="ssun">
+        <createTable tableName="offer_materialized">
+            <column name="offer_id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="driver_id" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="shipment_id" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="capacity" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <createIndex tableName="offer_materialized" indexName="idx_offer_id">
+            <column name="offer_id"></column>
+        </createIndex>
+        <createIndex tableName="offer_materialized" indexName="idx_shipment_id">
+            <column name="shipment_id"></column>
+        </createIndex>
+        <createIndex tableName="offer_materialized" indexName="idx_driver_id">
+            <column name="driver_id"></column>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
